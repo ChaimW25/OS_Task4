@@ -139,7 +139,7 @@ void *dummy(void *new_fd)
 
         char temp[1000];
         printf("top the stack = %s\n", top(root));
-        strcat(temp, top(&root));
+        strcat(temp, top(root));
         printf("cosomo %s\n", temp);
         strcpy(data,"OUTPUT: ");
         strcat(data,temp);
