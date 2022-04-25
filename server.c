@@ -20,65 +20,115 @@ pthread_mutex_t mut;
 #define BACKLOG 10   // how many pending connections queue will hold
 int i =0;
 
+
+
+#define  MAXSIZE 1024
 // A structure to represent a stack
 struct StackNode {
-    char data[1000];
+    char data[MAXSIZE];
     struct StackNode* next;
 };
 
-struct StackNode* newNode(char* data)
+struct StackNode* newNode(char data[])
 {
     struct StackNode* stackNode =
             (struct StackNode*)
                     malloc(sizeof(struct StackNode));
-    strcpy(stackNode->data,data);
-//    printf("%s\n",stackNode->data);
-//    stackNode->data = data;
+    strcpy(stackNode->data, data);
     stackNode->next = NULL;
     return stackNode;
 }
 
-int isEmpty(struct StackNode* root)
-{
-    return !root;
-}
+//int isEmpty(struct StackNode* root)
+//{
+//    return !root;
+//}
 
-void push(struct StackNode** root, char* data)
+void push(struct StackNode** root, char data[])
 {
     struct StackNode* stackNode = newNode(data);
     stackNode->next = *root;
     *root = stackNode;
-    printf("%s pushed to stack\n", stackNode->data);
+    printf("%s pushed to stack\n", data);
 }
 
-void pop(struct StackNode** root)
+char* pop(struct StackNode** root)
 {
-    if (isEmpty(*root)){
-        printf("stack is empty\n");
-        return ;}
 
     struct StackNode* temp = *root;
-
     *root = (*root)->next;
-    char popped[1000];
-    strcpy(popped,temp->data);
-    free(temp);
+    char *popped = temp->data;
+    printf("%s\n",popped);
+//    free(temp);
 
-    printf("%s popped from stack\n", popped);
+    return popped;
 }
 
 char* top(struct StackNode* root)
 {
-    if (isEmpty(root))
-        return "stack is empty";
     return root->data;
-//    printf("'%s' is in top of the stack\n", root->data);
 }
+
+// A structure to represent a stack
+//struct StackNode {
+//    char data[1000];
+//    struct StackNode* next;
+//};
+
+//struct StackNode* newNode(char* data)
+//{
+//    struct StackNode* stackNode =
+//            (struct StackNode*)
+//                    malloc(sizeof(struct StackNode));
+//    strcpy(stackNode->data,data);
+////    printf("%s\n",stackNode->data);
+////    stackNode->data = data;
+//    stackNode->next = NULL;
+//    return stackNode;
+//}
+//
+//int isEmpty(struct StackNode* root)
+//{
+//    return !root;
+//}
+//
+//void push(struct StackNode** root, char* data)
+//{
+//    struct StackNode* stackNode = newNode(data);
+//    stackNode->next = *root;
+//    *root = stackNode;
+//    printf("%s pushed to stack\n", stackNode->data);
+//}
+//
+//void pop(struct StackNode** root)
+//{
+//    if (isEmpty(*root)){
+//        printf("stack is empty\n");
+//        return ;}
+//
+//    struct StackNode* temp = *root;
+//
+//    *root = (*root)->next;
+//    char popped[1000];
+//    strcpy(popped,temp->data);
+//    free(temp);
+//
+//    printf("%s popped from stack\n", popped);
+//}
+//
+//char* top(struct StackNode* root)
+//{
+//    if (isEmpty(root))
+//        return "stack is empty";
+//    return root->data;
+////    printf("'%s' is in top of the stack\n", root->data);
+//}
 
 void *dummy(void *new_fd)
 {
+    int sock=*(int* )new_fd;
     printf("in1\n");
-    printf("zibi %s\n", *root->data);
+    printf("zibi %s\n", root->data);
     printf("in2\n");
     pthread_mutex_lock(&mut);
     if(!strncmp("PUSH",data,4)){
@@ -88,15 +138,15 @@ void *dummy(void *new_fd)
 
 
         char temp[1000];
-        printf("top the stack = %s\n", top(&root));
-        strcmp(temp, top(&root));
+        printf("top the stack = %s\n", top(root));
+        strcat(temp, top(&root));
         printf("cosomo %s\n", temp);
         strcpy(data,"OUTPUT: ");
         strcat(data,temp);
         printf("deede\n");
 
         printf("we gytftft %s\n",data);
-        if(send(new_fd,data,1000,0)==-1){
+        if(send(sock,data,1000,0)==-1){
             perror("send herer");
         }
     }
