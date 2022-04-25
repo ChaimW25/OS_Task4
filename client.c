@@ -75,7 +75,10 @@ int main(int argc, char *argv[])
     inet_ntop(p->ai_family, get_in_addr((struct sockaddr *)p->ai_addr),
               s, sizeof s);
     printf("client: connecting to %s\n", s);
-    if(send(sockfd,"PUSH haim is angry",1000,0)==-1){
+//    if(send(sockfd,"PUSH haim is angry",1000,0)==-1){
+//        perror("failed");
+//    }
+    if(send(sockfd,"TOP",1000,0)==-1){
         perror("failed");
     }
     freeaddrinfo(servinfo); // all done with this structure

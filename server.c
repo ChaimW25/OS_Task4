@@ -77,16 +77,27 @@ char* top(struct StackNode* root)
 
 void *dummy(void *new_fd)
 {
+    printf("in1\n");
+    printf("zibi %s\n", *root->data);
+    printf("in2\n");
     pthread_mutex_lock(&mut);
     if(!strncmp("PUSH",data,4)){
         push(&root, data+5);
     }
-    else if(!strncmp("TOP",data,3)){
-        char *temp=top(&root);
+    else if(!strcmp("TOP",data)){
+
+
+        char temp[1000];
+        printf("top the stack = %s\n", top(&root));
+        strcmp(temp, top(&root));
+        printf("cosomo %s\n", temp);
         strcpy(data,"OUTPUT: ");
         strcat(data,temp);
+        printf("deede\n");
+
+        printf("we gytftft %s\n",data);
         if(send(new_fd,data,1000,0)==-1){
-            perror("send");
+            perror("send herer");
         }
     }
     else if(!strncmp("POP",data,3)){
