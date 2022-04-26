@@ -1,7 +1,6 @@
 CC=gcc
 FLAG= -Wall -g
-OBJECTS_LOOPS=  advancedClassificationLoop.o basicClassification.o
-OBJECTS_REC= advancedClassificationRecursion.o basicClassification.o
+
 
 all: server client
 server: server.o
@@ -11,10 +10,10 @@ client: client.o
 	$(CC)  $(FLAG) -o client client.o
 
 
-server.o: server.c
-	$(CC)  $(FLAG) -c server.c
-client.o: client.c
-	$(CC)  $(FLAG) -c client.c
+server.o: server.cpp
+	$(CC)  $(FLAG) -c server.cpp
+client.o: client.cpp
+	$(CC)  $(FLAG) -c client.cpp
 .PHONY: clean all
 
 clean:
