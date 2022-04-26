@@ -99,7 +99,7 @@ void *dummy(void *new_fd)
 //        strcat(data, temp);
 //        printf("deede\n");
 
-//        printf("we gytftft %s\n", data);
+//        printf("we gytftft %s\n", data);ss
 
 
 

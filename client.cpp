@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 
 
     buf[numbytes] = '\0';
-//    if(strlen(buf)!=0){
+//    if(strlen(buf)!=0){ss
     if (!strncmp("TOP", data, 3)) {
 
         if ((recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
