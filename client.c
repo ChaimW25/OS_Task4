@@ -78,21 +78,33 @@ int main(int argc, char *argv[])
 //    if(send(sockfd,"PUSH haim is angry",1000,0)==-1){
 //        perror("failed");
 //    }
-    if(send(sockfd,"TOP",1000,0)==-1){
+//    if(send(sockfd,"TOP",1000,0)==-1){
+//        perror("failed");
+//    }
+    char data[1024];
+    fgets(data,1024,stdin);
+    if(send(sockfd,data,1024,0)==-1){
         perror("failed");
     }
+
     freeaddrinfo(servinfo); // all done with this structure
 
-    if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
-        perror("recv");
-        exit(1);
-    }
+
 
     buf[numbytes] = '\0';
-    if(strlen(buf)!=0){
-        printf("client: received '%s'\n",buf);
+//    if(strlen(buf)!=0){
+    if (!strncmp("TOP", data, 3)) {
 
-    }
+        if ((recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+            perror("recv");
+            exit(1);
+        }
+            printf("OUTPUT: %s\n",buf);
+
+        }
+
+
+
 
     close(sockfd);
 
