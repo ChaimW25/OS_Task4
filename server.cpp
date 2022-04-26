@@ -74,6 +74,9 @@ void *dummy(void *new_fd)
 {
 
     int sock=*(int* )new_fd;
+    if(recv(sock,data,1000,0)==-1){
+        perror("recv");
+    }
 //    printf("in1\n");
 //    printf("zibi %s\n", root->data);
 //    printf("in2\n");
@@ -213,9 +216,7 @@ int main(void)
         printf("server: got connection from %s\n", s);
 
 
-        if(recv(new_fd,data,1000,0)==-1){
-            perror("recv");
-        }
+
         pthread_t thread;
         if (!pthread_create(&thread, NULL, dummy, &new_fd)) { // this is the child process
 
