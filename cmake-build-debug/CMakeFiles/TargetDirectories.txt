@@ -1,0 +1,6 @@
+/home/chaimw/CLionProjects/server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/chaimw/CLionProjects/server/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/chaimw/CLionProjects/server/cmake-build-debug/CMakeFiles/mut.dir
+/home/chaimw/CLionProjects/server/cmake-build-debug/CMakeFiles/server.dir
+/home/chaimw/CLionProjects/server/cmake-build-debug/CMakeFiles/stack.dir
+/home/chaimw/CLionProjects/server/cmake-build-debug/CMakeFiles/client.dir
